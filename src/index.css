@@ -1,3 +1,226 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-cream: #f5f0e8;
+  --color-dark: #1a1714;
+  --color-wood: #8b5a2b;
+  --color-wood-dark: #5c3d1e;
+  --color-wood-light: #c4956a;
+  --color-accent: #d4a574;
+  --color-snow: #fafaf8;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', system-ui, sans-serif;
+
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 2vw, 1.25rem);
+  --space-md: clamp(1.5rem, 4vw, 3rem);
+  --space-lg: clamp(3rem, 8vw, 6rem);
+  --space-xl: clamp(5rem, 12vw, 10rem);
+  --space-2xl: clamp(8rem, 18vw, 16rem);
+}
+
+* {
+  cursor: none;
+}
+
+html {
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+::selection {
+  background-color: var(--color-wood);
+  color: var(--color-cream);
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-wood);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+}
+
+.custom-cursor.hovering {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-wood);
+  mix-blend-mode: normal;
+  opacity: 0.3;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-wood);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* Fluid Typography */
+.text-fluid-xs { font-size: clamp(0.75rem, 1vw, 0.875rem); }
+.text-fluid-sm { font-size: clamp(0.875rem, 1.2vw, 1rem); }
+.text-fluid-base { font-size: clamp(1rem, 1.4vw, 1.25rem); }
+.text-fluid-lg { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+.text-fluid-xl { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+.text-fluid-2xl { font-size: clamp(2rem, 4vw, 3.5rem); }
+.text-fluid-3xl { font-size: clamp(2.5rem, 6vw, 5rem); }
+.text-fluid-4xl { font-size: clamp(3rem, 8vw, 7rem); }
+.text-fluid-5xl { font-size: clamp(4rem, 12vw, 11rem); }
+.text-fluid-massive { font-size: clamp(5rem, 18vw, 18rem); }
+
+/* Broken Grid Utilities */
+.offset-left-sm { margin-left: clamp(-2rem, -4vw, -4rem); }
+.offset-left-md { margin-left: clamp(-4rem, -8vw, -8rem); }
+.offset-left-lg { margin-left: clamp(-6rem, -12vw, -12rem); }
+.offset-right-sm { margin-right: clamp(-2rem, -4vw, -4rem); }
+.offset-right-md { margin-right: clamp(-4rem, -8vw, -8rem); }
+.offset-right-lg { margin-right: clamp(-6rem, -12vw, -12rem); }
+
+.push-up-sm { margin-top: clamp(-3rem, -6vw, -6rem); }
+.push-up-md { margin-top: clamp(-6rem, -10vw, -10rem); }
+.push-up-lg { margin-top: clamp(-10rem, -16vw, -16rem); }
+
+/* Reveal Animations */
+.reveal-mask {
+  clip-path: inset(0 100% 0 0);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.char {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.line {
+  overflow: hidden;
+}
+
+/* Asymmetric Spacing */
+.asymmetric-padding {
+  padding-left: clamp(2rem, 8vw, 8rem);
+  padding-right: clamp(1rem, 4vw, 4rem);
+}
+
+.asymmetric-padding-reverse {
+  padding-left: clamp(1rem, 4vw, 4rem);
+  padding-right: clamp(2rem, 8vw, 8rem);
+}
+
+/* Image treatments */
+.img-grain {
+  position: relative;
+}
+
+.img-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Marquee */
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Border treatments */
+.border-irregular {
+  border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
+}
+
+/* Blend modes for overlays */
+.blend-overlay { mix-blend-mode: overlay; }
+.blend-multiply { mix-blend-mode: multiply; }
+.blend-difference { mix-blend-mode: difference; }
+
+/* Z-index layers */
+.z-behind { z-index: -1; }
+.z-base { z-index: 1; }
+.z-content { z-index: 10; }
+.z-overlay { z-index: 50; }
+.z-nav { z-index: 100; }
+.z-modal { z-index: 200; }
+.z-cursor { z-index: 9999; }
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9998;
+}
