@@ -144,13 +144,13 @@ export default function Home() {
 
       // Marquee speed on scroll
       gsap.to(marqueeRef.current.querySelector('.marquee-track'), {
-        x: '-50%',
+        x: '-60%',
         ease: 'none',
         scrollTrigger: {
           trigger: marqueeRef.current,
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 0.5,
+          scrub: 0.2,
         },
       })
     })
@@ -273,10 +273,10 @@ export default function Home() {
       </section>
 
       {/* Marquee */}
-      <section ref={marqueeRef} className="py-[var(--space-lg)] overflow-hidden border-y border-[var(--color-dark)]/10">
+      <section ref={marqueeRef} className="py-[var(--space-md)] overflow-hidden border-y border-[var(--color-dark)]/10">
         <div className="marquee-track whitespace-nowrap">
-          {[...Array(4)].map((_, i) => (
-            <span key={i} className="inline-block text-fluid-massive font-serif italic text-[var(--color-dark)]/5 mx-8">
+          {[...Array(6)].map((_, i) => (
+            <span key={i} className="inline-block text-fluid-3xl font-serif italic text-[var(--color-dark)]/10 mx-6">
               Cucina • Tradizione • Montagna • Passione •
             </span>
           ))}
