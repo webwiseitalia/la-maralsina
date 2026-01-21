@@ -9,6 +9,10 @@ export default function Navbar() {
   const location = useLocation()
   const logoRef = useRef(null)
 
+  // Pages with dark hero backgrounds where navbar should be light
+  const darkHeroPages = ['/', '/chi-siamo', '/menu', '/stagioni', '/come-raggiungerci', '/galleria', '/contatti']
+  const hasDarkHero = darkHeroPages.includes(location.pathname)
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100)
     window.addEventListener('scroll', handleScroll)
@@ -55,19 +59,27 @@ export default function Navbar() {
     }),
   }
 
+  // Determine text color based on page and scroll state
+  const getTextColor = () => {
+    if (isOpen) return 'text-white'
+    if (scrolled) return 'text-white mix-blend-difference'
+    if (hasDarkHero) return 'text-white'
+    return 'text-[var(--color-dark)]'
+  }
+
+  const textColorClass = getTextColor()
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
-          scrolled ? 'mix-blend-difference' : ''
+          scrolled && !isOpen ? 'mix-blend-difference' : ''
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-6">
           <Link ref={logoRef} to="/" className="relative z-[101]">
             <span
-              className={`font-serif text-fluid-lg tracking-tight transition-colors duration-500 ${
-                isOpen || scrolled ? 'text-white' : 'text-[var(--color-dark)]'
-              }`}
+              className={`font-serif text-fluid-lg tracking-tight transition-colors duration-500 ${textColorClass}`}
               style={{ fontStyle: 'italic' }}
             >
               La Maralsina
@@ -79,9 +91,7 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative text-fluid-sm tracking-wide transition-colors duration-300 group ${
-                  scrolled ? 'text-white' : 'text-[var(--color-dark)]'
-                }`}
+                className={`relative text-fluid-sm tracking-wide transition-colors duration-300 group ${textColorClass}`}
               >
                 {link.name}
                 <span
@@ -101,19 +111,19 @@ export default function Navbar() {
             <motion.span
               animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               className={`block w-6 h-[2px] transition-colors ${
-                isOpen ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
+                isOpen ? 'bg-white' : hasDarkHero && !scrolled ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
               }`}
             />
             <motion.span
               animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
               className={`block w-6 h-[2px] transition-colors ${
-                isOpen ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
+                isOpen ? 'bg-white' : hasDarkHero && !scrolled ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
               }`}
             />
             <motion.span
               animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
               className={`block w-6 h-[2px] transition-colors ${
-                isOpen ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
+                isOpen ? 'bg-white' : hasDarkHero && !scrolled ? 'bg-white' : scrolled ? 'bg-white' : 'bg-[var(--color-dark)]'
               }`}
             />
           </button>

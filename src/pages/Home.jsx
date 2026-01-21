@@ -4,7 +4,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
-import heroImage from '../assets/foto/foto-28.webp'
+import heroImage from '../assets/foto/foto-31.webp'
+import heroImage2 from '../assets/foto/foto-24.webp'
 import winterImage from '../assets/foto/foto-9.webp'
 import summerImage from '../assets/foto/foto-21.webp'
 import interiorImage from '../assets/foto/foto-10.webp'
@@ -33,39 +34,38 @@ export default function Home() {
         tagName: 'span',
       })
 
-      gsap.set(heroTitle.chars, { y: 120, opacity: 0 })
+      // Eyebrow
+      gsap.fromTo(
+        heroTextRef.current.querySelector('.hero-eyebrow'),
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 1, ease: 'power3.out', delay: 0.2 }
+      )
+
+      // Title characters
+      gsap.set(heroTitle.chars, { y: 100, opacity: 0, rotateX: -40 })
       gsap.to(heroTitle.chars, {
         y: 0,
         opacity: 1,
-        duration: 1.4,
-        stagger: 0.04,
+        rotateX: 0,
+        duration: 1.2,
+        stagger: 0.03,
         ease: 'power4.out',
-        delay: 0.3,
+        delay: 0.4,
       })
 
+      // Subtitle
       gsap.fromTo(
         heroTextRef.current.querySelector('.hero-subtitle'),
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 1.2 }
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 1 }
       )
 
+      // CTA buttons
       gsap.fromTo(
         heroTextRef.current.querySelector('.hero-cta'),
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 1.6 }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 1.3 }
       )
-
-      // Parallax hero image
-      gsap.to(heroRef.current.querySelector('img'), {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
-      })
 
       // Intro section
       const introTitle = introRef.current.querySelector('h2')
@@ -162,43 +162,70 @@ export default function Home() {
     <div className="noise-overlay">
       {/* Hero */}
       <section ref={heroRef} className="relative h-screen min-h-[700px] overflow-hidden">
+        {/* Full background image */}
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="La Maralsina di notte"
-            className="w-full h-[120%] object-cover"
+            alt="Panorama montano"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[var(--color-cream)]" />
+          {/* Overlay scuro uniforme */}
+          <div className="absolute inset-0 bg-[var(--color-dark)]/60" />
         </div>
 
-        <div
-          ref={heroTextRef}
-          className="relative z-10 h-full flex flex-col justify-end pb-[15vh] asymmetric-padding"
-        >
-          <h1 className="text-fluid-5xl font-serif text-white leading-[0.9] tracking-tight max-w-[90vw]">
+        {/* Content */}
+        <div ref={heroTextRef} className="relative z-20 h-full flex flex-col justify-end pb-[12vh] asymmetric-padding">
+          {/* Eyebrow */}
+          <p className="hero-eyebrow text-fluid-xs uppercase tracking-[0.4em] text-[var(--color-accent)] mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            Rifugio • Ristorante • Ski Bar
+          </p>
+
+          {/* Title */}
+          <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-serif italic text-white leading-[0.9] mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]" style={{ textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.4)' }}>
             La Maralsina
           </h1>
-          <p className="hero-subtitle text-fluid-xl text-white/80 mt-6 max-w-xl font-light">
-            Rifugio alpino nel cuore
-            <br />
-            delle piste di Temù
+
+          {/* Subtitle */}
+          <p className="hero-subtitle text-fluid-base text-white max-w-lg leading-relaxed mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            Nel cuore delle piste di Temù, dove la tradizione alpina incontra l'ospitalità.
           </p>
-          <div className="hero-cta mt-12">
+
+          {/* CTA */}
+          <div className="hero-cta flex flex-col sm:flex-row gap-4">
             <Link
               to="/menu"
-              className="inline-block text-fluid-sm uppercase tracking-[0.3em] text-white border-b-2 border-white pb-2 hover:tracking-[0.4em] transition-all duration-500"
+              className="inline-block text-fluid-sm text-[var(--color-dark)] bg-white px-8 py-4 uppercase tracking-[0.2em] hover:bg-[var(--color-accent)] transition-colors"
             >
-              Scopri
+              Scopri il menu
+            </Link>
+            <Link
+              to="/contatti"
+              className="inline-block text-fluid-sm text-white border border-white/50 px-8 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-[var(--color-dark)] transition-colors"
+            >
+              Prenota
             </Link>
           </div>
         </div>
 
-        <div className="absolute bottom-8 right-8 md:right-16">
-          <p className="text-fluid-xs text-white/60 tracking-widest uppercase">
-            Scroll
-          </p>
-          <div className="w-[1px] h-16 bg-white/40 mt-2 mx-auto overflow-hidden">
-            <div className="w-full h-1/2 bg-white animate-pulse" />
+        {/* Info box in basso a destra */}
+        <div className="absolute bottom-[12vh] right-8 md:right-16 z-20 hidden md:block">
+          <div className="text-right drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            <p className="text-fluid-3xl font-serif italic text-white" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.5)' }}>1650m</p>
+            <p className="text-fluid-xs text-white/70 uppercase tracking-widest mt-1">
+              Val Camonica
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-fluid-xs text-white/40 tracking-widest uppercase">
+              Scroll
+            </p>
+            <div className="w-[1px] h-12 bg-white/30 overflow-hidden">
+              <div className="w-full h-1/2 bg-white/60 animate-bounce" />
+            </div>
           </div>
         </div>
       </section>
@@ -220,10 +247,11 @@ export default function Home() {
               </h2>
             </div>
             <div className="lg:col-span-4 lg:col-start-8 lg:pt-24">
+              <p className="intro-text text-fluid-base text-[var(--color-dark)]/70 leading-relaxed mb-6">
+                Nel cuore della Val Camonica, dove le piste del comprensorio Pontedilegno-Tonale incontrano la tradizione culinaria lombarda. La Maralsina è più di un rifugio: è un punto di riferimento per sciatori, escursionisti e famiglie.
+              </p>
               <p className="intro-text text-fluid-base text-[var(--color-dark)]/70 leading-relaxed">
-                Nel cuore della Val Camonica, dove le piste incontrano la tradizione.
-                Qui ogni piatto racconta una storia, ogni panorama toglie il fiato.
-                Non un semplice rifugio, ma un luogo dove il tempo rallenta.
+                Qui ogni piatto racconta la storia delle nostre montagne, ogni panorama toglie il fiato. Un luogo dove il tempo rallenta e l'ospitalità è di casa da quasi quarant'anni.
               </p>
             </div>
           </div>
@@ -259,14 +287,16 @@ export default function Home() {
       <section ref={seasonRef} className="py-[var(--space-2xl)] bg-[var(--color-dark)]">
         <div className="asymmetric-padding">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-[var(--space-xl)]">
-            <h2 className="text-fluid-3xl text-white leading-[1.1]">
-              Due anime,
-              <br />
-              <span className="italic text-[var(--color-accent)]">una passione</span>
-            </h2>
-            <p className="text-fluid-sm text-white/50 max-w-sm mt-8 md:mt-0">
-              D'inverno sulle piste, d'estate tra i sentieri.
-              Il rifugio vi aspetta tutto l'anno.
+            <div>
+              <h2 className="text-fluid-3xl text-white leading-[1.1]">
+                Due anime,
+                <br />
+                <span className="italic text-[var(--color-accent)]">una passione</span>
+              </h2>
+            </div>
+            <p className="text-fluid-base text-white/50 max-w-md mt-8 md:mt-0">
+              D'inverno sulle piste del Pontedilegno-Tonale, d'estate tra i sentieri alpini.
+              Il rifugio vi aspetta tutto l'anno con la stessa passione e lo stesso calore.
             </p>
           </div>
         </div>
@@ -288,14 +318,13 @@ export default function Home() {
                 Inverno
               </h3>
               <p className="text-fluid-sm text-white/70 mt-4 max-w-sm">
-                Sci ai piedi, fermati per un pranzo caldo
-                con vista sulle montagne innevate.
+                Raggiungeteci sci ai piedi direttamente dalle piste. Fermatevi per una pausa pranzo con vin brulé caldo, piatti tipici valtellinesi e la vista mozzafiato sulle montagne innevate. Il posto perfetto per ricaricare le energie.
               </p>
               <Link
                 to="/stagioni"
                 className="inline-block mt-6 text-fluid-xs text-white uppercase tracking-[0.2em] border-b border-white/50 pb-1 hover:border-white transition-colors"
               >
-                Scopri
+                Scopri l'inverno
               </Link>
             </div>
           </div>
@@ -316,14 +345,13 @@ export default function Home() {
                 Estate
               </h3>
               <p className="text-fluid-sm text-white/70 mt-4 max-w-sm">
-                Meta perfetta per escursionisti e biker.
-                Relax e buon cibo immersi nella natura.
+                Quando la neve si scioglie, i prati verdi vi aspettano. Meta ideale per escursionisti, mountain biker e famiglie. Godetevi un pranzo sulla nostra terrazza panoramica, circondati dal silenzio delle Alpi.
               </p>
               <Link
                 to="/stagioni"
                 className="inline-block mt-6 text-fluid-xs text-white uppercase tracking-[0.2em] border-b border-white/50 pb-1 hover:border-white transition-colors"
               >
-                Scopri
+                Scopri l'estate
               </Link>
             </div>
           </div>
@@ -333,16 +361,28 @@ export default function Home() {
       {/* Food */}
       <section ref={foodRef} className="py-[var(--space-2xl)] relative overflow-hidden">
         <div className="asymmetric-padding mb-[var(--space-lg)]">
-          <p className="text-fluid-xs uppercase tracking-[0.3em] text-[var(--color-wood)] mb-6">
-            La cucina
-          </p>
-          <h2 className="text-fluid-4xl leading-[0.95] max-w-3xl">
-            Sapori che
-            <br />
-            <span className="italic">raccontano</span>
-            <br />
-            la montagna
-          </h2>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+            <div>
+              <p className="text-fluid-xs uppercase tracking-[0.3em] text-[var(--color-wood)] mb-6">
+                La cucina
+              </p>
+              <h2 className="text-fluid-4xl leading-[0.95]">
+                Sapori che
+                <br />
+                <span className="italic">raccontano</span>
+                <br />
+                la montagna
+              </h2>
+            </div>
+            <div className="lg:pt-12">
+              <p className="text-fluid-base text-[var(--color-dark)]/70 leading-relaxed mb-4">
+                La nostra cucina celebra la tradizione valtellinese e camuna. Utilizziamo ingredienti locali e ricette tramandate da generazioni, per offrirvi un'esperienza autentica.
+              </p>
+              <p className="text-fluid-base text-[var(--color-dark)]/70 leading-relaxed">
+                Dai <strong>pizzoccheri</strong> fatti in casa alla <strong>polenta taragna</strong>, dai <strong>taglieri di salumi e formaggi</strong> delle nostre valli alla <strong>selvaggina</strong> cucinata secondo tradizione. Ogni piatto è preparato con cura e passione.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="relative h-[120vh] md:h-[100vh]">
@@ -356,16 +396,18 @@ export default function Home() {
             <img src={dish3} alt="Polenta" className="w-full h-full object-cover" />
           </div>
 
-          <div className="absolute bottom-[15%] right-[8%] max-w-xs text-right hidden md:block">
-            <p className="text-fluid-base text-[var(--color-dark)]/70 leading-relaxed">
-              Pizzoccheri fatti in casa, taglieri di salumi locali,
-              selvaggina e la polenta che si scioglie in bocca.
+          <div className="absolute bottom-[15%] right-[8%] max-w-sm text-right hidden md:block">
+            <p className="text-fluid-lg font-serif italic text-[var(--color-dark)] mb-4">
+              "Cucinare è un atto d'amore"
+            </p>
+            <p className="text-fluid-sm text-[var(--color-dark)]/60 mb-6">
+              Ogni giorno prepariamo i nostri piatti con ingredienti freschi e la passione di sempre.
             </p>
             <Link
               to="/menu"
-              className="inline-block mt-6 text-fluid-sm uppercase tracking-[0.2em] border-b-2 border-[var(--color-dark)] pb-1"
+              className="inline-block text-fluid-sm uppercase tracking-[0.2em] border-b-2 border-[var(--color-dark)] pb-1 hover:border-[var(--color-wood)] transition-colors"
             >
-              Il Menu
+              Scopri il Menu
             </Link>
           </div>
         </div>
@@ -383,6 +425,9 @@ export default function Home() {
           </div>
           <div className="bg-[var(--color-wood-dark)] flex items-center p-8 md:p-16 lg:p-24">
             <div>
+              <p className="text-fluid-xs uppercase tracking-[0.3em] text-white/50 mb-6">
+                L'ambiente
+              </p>
               <h2 className="text-fluid-3xl text-white leading-[1.1] mb-8">
                 Un'atmosfera
                 <br />
@@ -390,16 +435,17 @@ export default function Home() {
                 <br />
                 l'anima
               </h2>
-              <p className="text-fluid-base text-white/70 leading-relaxed max-w-md">
-                Legno antico, travi a vista e il crepitio del camino.
-                Un luogo dove il tempo rallenta, dove ogni dettaglio
-                parla di tradizione e accoglienza.
+              <p className="text-fluid-base text-white/70 leading-relaxed max-w-md mb-6">
+                Legno antico, travi a vista e il calore del camino. Entrando alla Maralsina vi sentirete subito a casa, accolti da un'atmosfera calda e genuina che solo un vero rifugio di montagna sa offrire.
+              </p>
+              <p className="text-fluid-base text-white/70 leading-relaxed max-w-md mb-10">
+                Oltre 100 posti a sedere tra sala interna e terrazza panoramica. Perfetto per gruppi, famiglie e coppie in cerca di un angolo di pace.
               </p>
               <Link
                 to="/galleria"
-                className="inline-block mt-10 text-fluid-sm text-white uppercase tracking-[0.2em] border-b border-white/50 pb-1 hover:border-white transition-colors"
+                className="inline-block text-fluid-sm text-white uppercase tracking-[0.2em] border-b border-white/50 pb-1 hover:border-white transition-colors"
               >
-                Galleria
+                Guarda la Galleria
               </Link>
             </div>
           </div>
@@ -407,40 +453,62 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative h-[80vh] overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={nightView}
-            alt="Vista notturna"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[var(--color-dark)]/60" />
-        </div>
+      <section className="py-[var(--space-2xl)] bg-[var(--color-dark)]">
+        <div className="asymmetric-padding">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            {/* Left - Text */}
+            <div>
+              <p className="text-fluid-xs text-[var(--color-accent)] uppercase tracking-[0.3em] mb-6">
+                Vi aspettiamo
+              </p>
+              <h2 className="text-fluid-4xl text-white leading-[1] mb-8">
+                Un tavolo
+                <br />
+                <span className="italic text-[var(--color-accent)]">caldo</span> vi aspetta
+                <br />
+                in quota
+              </h2>
+              <p className="text-fluid-base text-white/50 max-w-md mb-10">
+                Che sia per una pausa pranzo sulle piste o una cena speciale,
+                siamo pronti ad accogliervi con i sapori della tradizione.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/contatti"
+                  className="inline-block text-fluid-sm text-[var(--color-dark)] bg-white px-8 py-4 uppercase tracking-[0.2em] hover:bg-[var(--color-accent)] transition-colors text-center"
+                >
+                  Prenota
+                </Link>
+                <Link
+                  to="/come-raggiungerci"
+                  className="inline-block text-fluid-sm text-white border border-white/30 px-8 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-[var(--color-dark)] transition-colors text-center"
+                >
+                  Come raggiungerci
+                </Link>
+              </div>
+            </div>
 
-        <div className="relative z-10 h-full flex flex-col justify-center asymmetric-padding">
-          <p className="text-fluid-xs text-white/60 uppercase tracking-[0.3em] mb-6">
-            Vi aspettiamo
-          </p>
-          <h2 className="text-fluid-4xl text-white leading-[1] max-w-2xl">
-            Un tavolo
-            <br />
-            <span className="italic">caldo</span> vi aspetta
-            <br />
-            in quota
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-6 mt-12">
-            <Link
-              to="/contatti"
-              className="inline-block text-fluid-sm text-[var(--color-dark)] bg-white px-8 py-4 uppercase tracking-[0.2em] hover:bg-[var(--color-accent)] transition-colors"
-            >
-              Prenota
-            </Link>
-            <Link
-              to="/come-raggiungerci"
-              className="inline-block text-fluid-sm text-white border border-white px-8 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-[var(--color-dark)] transition-colors"
-            >
-              Come raggiungerci
-            </Link>
+            {/* Right - Info cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/5 p-8 border border-white/10">
+                <p className="text-fluid-3xl font-serif italic text-white mb-2">1650</p>
+                <p className="text-fluid-xs text-white/50 uppercase tracking-widest">metri s.l.m.</p>
+              </div>
+              <div className="bg-white/5 p-8 border border-white/10">
+                <p className="text-fluid-3xl font-serif italic text-white mb-2">40+</p>
+                <p className="text-fluid-xs text-white/50 uppercase tracking-widest">anni di storia</p>
+              </div>
+              <div className="bg-white/5 p-8 border border-white/10">
+                <p className="text-fluid-3xl font-serif italic text-white mb-2">100</p>
+                <p className="text-fluid-xs text-white/50 uppercase tracking-widest">posti a sedere</p>
+              </div>
+              <div className="bg-[var(--color-wood)] p-8">
+                <p className="text-fluid-sm text-white mb-2">Chiamaci</p>
+                <a href="tel:+390364173069" className="text-fluid-base text-white/90 hover:text-white transition-colors">
+                  +39 0364 1730695
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
