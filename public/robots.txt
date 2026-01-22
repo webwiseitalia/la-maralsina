@@ -1,0 +1,12 @@
+# Robots.txt per Rifugio La Maralsina
+# https://lamaralsina.it
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lamaralsina.it/sitemap.xml
+
+# Disallow admin/private paths (se presenti)
+Disallow: /admin/
+Disallow: /private/

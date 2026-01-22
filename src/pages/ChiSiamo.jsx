@@ -103,7 +103,11 @@ export default function ChiSiamo() {
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Rifugio La Maralsina"
+            alt="Rifugio La Maralsina - Chi Siamo"
+            title="La nostra storia"
+            loading="eager"
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-dark)]/70 via-[var(--color-dark)]/40 to-transparent" />
@@ -152,7 +156,11 @@ export default function ChiSiamo() {
             <div className="relative">
               <img
                 src={interiorImage}
-                alt="Interno del rifugio"
+                alt="Interno accogliente del rifugio"
+                title="Sala interna La Maralsina"
+                loading="lazy"
+                width={1200}
+                height={800}
                 className="w-full h-[60vh] object-cover"
               />
               <div className="absolute -bottom-8 -left-8 md:-left-16 bg-[var(--color-wood-dark)] text-white p-6 md:p-10">
@@ -194,7 +202,11 @@ export default function ChiSiamo() {
       <section className="relative h-[50vh]">
         <img
           src={detailImage}
-          alt="Dettaglio interno"
+          alt="Dettaglio dell'arredamento interno"
+          title="Dettagli in legno del rifugio"
+          loading="lazy"
+          width={1920}
+          height={800}
           className="w-full h-full object-cover"
         />
       </section>
@@ -205,7 +217,11 @@ export default function ChiSiamo() {
           <div className="h-[60vh] lg:h-[80vh] overflow-hidden">
             <img
               src={staffImage}
-              alt="Il nostro team"
+              alt="Il team del Rifugio La Maralsina"
+              title="La nostra squadra"
+              loading="lazy"
+              width={800}
+              height={1000}
               className="w-full h-full object-cover"
             />
           </div>
@@ -237,7 +253,11 @@ export default function ChiSiamo() {
         <div className="absolute inset-0">
           <img
             src={salaImage}
-            alt="Sala ristorante"
+            alt="Sala ristorante del rifugio"
+            title="La sala per eventi"
+            loading="lazy"
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[var(--color-dark)]/70" />

@@ -100,9 +100,21 @@ export default function Footer() {
           <p className="text-fluid-xs text-white/30">
             © {new Date().getFullYear()} Rifugio La Maralsina
           </p>
-          <p className="text-fluid-xs text-white/30">
-            Comprensorio Pontedilegno-Tonale • Val Camonica
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/privacy-policy"
+              className="text-fluid-xs text-white/30 hover:text-white/60 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-white/20">•</span>
+            <Link
+              to="/cookie-policy"
+              className="text-fluid-xs text-white/30 hover:text-white/60 transition-colors"
+            >
+              Cookie Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

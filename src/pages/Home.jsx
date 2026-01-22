@@ -166,7 +166,11 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Panorama montano"
+            alt="Panorama montano del Rifugio La Maralsina"
+            title="Rifugio La Maralsina - Vista panoramica"
+            loading="eager"
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
           />
           {/* Overlay scuro uniforme */}
@@ -261,7 +265,11 @@ export default function Home() {
           <div className="w-[70vw] ml-[15vw] relative">
             <img
               src={exterior}
-              alt="Esterno rifugio"
+              alt="Esterno del Rifugio La Maralsina"
+              title="Vista esterna del rifugio"
+              loading="lazy"
+              width={1200}
+              height={800}
               className="w-full h-[50vh] object-cover img-grain"
             />
             <div className="absolute -bottom-12 -left-12 md:-left-24 bg-[var(--color-dark)] text-white p-8 md:p-12 max-w-xs">
@@ -306,7 +314,11 @@ export default function Home() {
           <div className="season-card group relative h-[70vh] overflow-hidden">
             <img
               src={winterImage}
-              alt="Inverno"
+              alt="La Maralsina in inverno sulle piste da sci"
+              title="Stagione invernale al rifugio"
+              loading="lazy"
+              width={800}
+              height={1000}
               className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -333,7 +345,11 @@ export default function Home() {
           <div className="season-card group relative h-[70vh] overflow-hidden md:mt-24">
             <img
               src={summerImage}
-              alt="Estate"
+              alt="La Maralsina in estate con terrazza panoramica"
+              title="Stagione estiva al rifugio"
+              loading="lazy"
+              width={800}
+              height={1000}
               className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -387,13 +403,13 @@ export default function Home() {
 
         <div className="relative h-[120vh] md:h-[100vh]">
           <div className="food-img absolute top-0 left-[5%] w-[45%] md:w-[30%] h-[35vh] md:h-[45vh]">
-            <img src={dish1} alt="Tagliere" className="w-full h-full object-cover" />
+            <img src={dish1} alt="Tagliere di salumi e formaggi" title="Tagliere della Maralsina" loading="lazy" width={600} height={800} className="w-full h-full object-cover" />
           </div>
           <div className="food-img absolute top-[20%] right-[5%] w-[50%] md:w-[35%] h-[40vh] md:h-[55vh]">
-            <img src={dish2} alt="Pizzoccheri" className="w-full h-full object-cover" />
+            <img src={dish2} alt="Pizzoccheri della Valtellina" title="Pizzoccheri fatti in casa" loading="lazy" width={700} height={900} className="w-full h-full object-cover" />
           </div>
           <div className="food-img absolute bottom-[5%] left-[20%] w-[55%] md:w-[40%] h-[35vh] md:h-[50vh]">
-            <img src={dish3} alt="Polenta" className="w-full h-full object-cover" />
+            <img src={dish3} alt="Polenta taragna con formaggi" title="Polenta taragna tradizionale" loading="lazy" width={800} height={600} className="w-full h-full object-cover" />
           </div>
 
           <div className="absolute bottom-[15%] right-[8%] max-w-sm text-right hidden md:block">
@@ -419,7 +435,11 @@ export default function Home() {
           <div className="h-[60vh] md:h-screen relative overflow-hidden">
             <img
               src={interiorImage}
-              alt="Interno rifugio"
+              alt="Interno accogliente del Rifugio La Maralsina"
+              title="Sala interna del rifugio"
+              loading="lazy"
+              width={800}
+              height={1000}
               className="w-full h-full object-cover"
             />
           </div>

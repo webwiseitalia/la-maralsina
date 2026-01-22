@@ -105,7 +105,11 @@ export default function Menu() {
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="I nostri piatti"
+            alt="I piatti tipici della cucina valtellinese"
+            title="Menu del Rifugio La Maralsina"
+            loading="eager"
+            width={1920}
+            height={1080}
             className="w-full h-[130%] object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)] via-transparent to-[var(--color-dark)]/30" />
@@ -156,7 +160,11 @@ export default function Menu() {
                 }`}>
                   <img
                     src={section.image}
-                    alt={section.category}
+                    alt={`${section.category} - Piatti tipici valtellinesi`}
+                    title={section.category}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
                     className="w-full h-full object-cover"
                   />
                   <div className={`absolute ${

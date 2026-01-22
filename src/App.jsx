@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // Components
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CookieBanner from './components/CookieBanner'
 
 // Pages
 import Home from './pages/Home'
@@ -16,6 +17,8 @@ import Stagioni from './pages/Stagioni'
 import ComeRaggiungerci from './pages/ComeRaggiungerci'
 import Galleria from './pages/Galleria'
 import Contatti from './pages/Contatti'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import CookiePolicy from './pages/CookiePolicy'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -76,9 +79,12 @@ function App() {
             <Route path="/come-raggiungerci" element={<ComeRaggiungerci />} />
             <Route path="/galleria" element={<Galleria />} />
             <Route path="/contatti" element={<Contatti />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
           </Routes>
         </main>
         <Footer />
+        <CookieBanner />
       </div>
     </>
   )
