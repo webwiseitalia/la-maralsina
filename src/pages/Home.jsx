@@ -174,23 +174,23 @@ export default function Home() {
             className="w-full h-full object-cover"
           />
           {/* Overlay scuro uniforme */}
-          <div className="absolute inset-0 bg-[var(--color-dark)]/60" />
+          <div className="absolute inset-0 bg-[var(--color-dark)]/70" />
         </div>
 
         {/* Content */}
         <div ref={heroTextRef} className="relative z-20 h-full flex flex-col justify-end pb-[12vh] asymmetric-padding">
           {/* Eyebrow */}
-          <p className="hero-eyebrow text-fluid-sm uppercase tracking-[0.3em] text-white font-medium mb-6" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6)' }}>
+          <p className="hero-eyebrow text-fluid-base uppercase tracking-[0.25em] text-[var(--color-accent)] font-semibold mb-6" style={{ textShadow: '0 2px 4px rgba(0,0,0,1), 0 4px 12px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.7)' }}>
             Rifugio • Ristorante • Ski Bar
           </p>
 
           {/* Title */}
-          <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-serif italic text-white leading-[0.9] mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]" style={{ textShadow: '0 4px 30px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.4)' }}>
+          <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-serif italic text-white leading-[0.9] mb-6" style={{ textShadow: '0 2px 4px rgba(0,0,0,1), 0 6px 20px rgba(0,0,0,0.8), 0 12px 40px rgba(0,0,0,0.6)' }}>
             La Maralsina
           </h1>
 
           {/* Subtitle */}
-          <p className="hero-subtitle text-fluid-base text-white max-w-lg leading-relaxed mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+          <p className="hero-subtitle text-fluid-lg text-white max-w-lg leading-relaxed mb-10 font-medium" style={{ textShadow: '0 2px 4px rgba(0,0,0,1), 0 4px 12px rgba(0,0,0,0.8)' }}>
             Nel cuore delle piste di Temù, dove la tradizione alpina incontra l'ospitalità.
           </p>
 
@@ -204,7 +204,7 @@ export default function Home() {
             </Link>
             <Link
               to="/contatti"
-              className="inline-block text-fluid-sm text-white border border-white/50 px-8 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-[var(--color-dark)] transition-colors"
+              className="inline-block text-fluid-sm text-[var(--color-dark)] bg-[var(--color-accent)] px-8 py-4 uppercase tracking-[0.2em] hover:bg-white transition-colors font-semibold"
             >
               Prenota
             </Link>
