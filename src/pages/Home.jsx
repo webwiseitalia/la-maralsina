@@ -180,7 +180,7 @@ export default function Home() {
         {/* Content */}
         <div ref={heroTextRef} className="relative z-20 h-full flex flex-col justify-end pb-[12vh] asymmetric-padding">
           {/* Eyebrow */}
-          <p className="hero-eyebrow text-fluid-xs uppercase tracking-[0.4em] text-[var(--color-accent)] mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+          <p className="hero-eyebrow text-fluid-sm uppercase tracking-[0.3em] text-white font-medium mb-6" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6)' }}>
             Rifugio • Ristorante • Ski Bar
           </p>
 

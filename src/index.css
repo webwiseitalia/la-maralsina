@@ -22,10 +22,6 @@
   --space-2xl: clamp(8rem, 18vw, 16rem);
 }
 
-* {
-  cursor: none;
-}
-
 html {
   font-size: clamp(14px, 1.2vw, 18px);
 }
